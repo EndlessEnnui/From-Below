@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+
+/* Since we are not defining rules for the "p" tag, it will follow the rules in body.*/
+body {
+  font-family: "Press Start 2P", cursive;
+  font-size: 15px;
+  background-color: 0;
+  color: white;
+  padding-top: 5rem;
+
+
+}
+
+canvas {
+  display: block;
+  margin: auto;
+  padding: 50px;
+}
+
+html, body {
+  font-family: "Press Start 2P", cursive;
+  font-size: 15px;
+  background-color: 0;
+  color: black;
+  padding-top: 5rem;
+}
