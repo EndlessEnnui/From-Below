@@ -18,7 +18,7 @@ function setup() {
   t = "Press R to start"
   bg = loadImage("assets/Background.png")
   myFont = loadFont("assets/PublicPixel.ttf");
-  jpImage = loadImage("assets/pot.png");
+  jpImage = loadImage("assets/pot0.png");
   jp1Image = loadImage("assets/pot1.png");
   jp2Image = loadImage("assets/pot2.png");
   dmImage = loadImage('assets/demon sprite0.png');
@@ -29,9 +29,9 @@ function setup() {
   lose = loadImage("assets/Lose.png");
   lose1 = loadImage("assets/LoseTomb.png");
   bullet = loadImage("assets/bullet.png");
-  peppers0 = loadImage('assets/peppers0');
-    peppers1 = loadImage('assets/peppers1');
-      peppers2 = loadImage('assets/peppers2');
+  peppers0 = loadImage('assets/peppers0.png');
+    peppers1 = loadImage('assets/peppers1.png');
+      peppers2 = loadImage('assets/peppers2.png');
   jp = createSprite(0, 0 , 20, 20);
   var myAnimation = jp.addAnimation('floating', 'assets/pot3.png', 'assets/pot0.png');
   jp.addAnimation('moving', 'assets/pot1.png', 'assets/pot2.png');
