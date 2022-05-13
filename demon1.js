@@ -34,6 +34,6 @@ class Demon1 {
     this.pos.add(difference);
   }
   ateYou() {
-  return dist(this.pos.x, this.pos.y, player.pos.x, player.pos.y) < 40;
+  return dist(this.pos.x, this.pos.y, player.pos.x, player.pos.y) < 30;
 }
 }

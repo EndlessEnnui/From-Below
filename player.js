@@ -64,13 +64,13 @@ class Player {
   }
   return false;
 }
-  hasShot(demon1) {
-  for (let i = 0; i < this.bullets.length; i++) {
-    if (dist(this.bullets[i].x, this.bullets[i].y, demon1.pos.x, demon1.pos.y) < 15) {
-      this.bullets.splice(i, 1);
-      return true;
-    }
+hasShot(demon1) {
+for (let i = 0; i < this.bullets.length; i++) {
+  if (dist(this.bullets[i].x, this.bullets[i].y, demon1.pos.x, demon1.pos.y) < 30) {
+    this.bullets.splice(i, 1);
+    return true;
   }
-  return false;
+}
+return false;
 }
 }
