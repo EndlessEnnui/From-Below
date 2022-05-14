@@ -1,6 +1,7 @@
 let player;
 let zombies = [];
 let demons1 = [];
+let blazes = [];
 let zombieSpawnTime = 250;
 let zombieMaxSpeed = 2;
 let zombnum = 0;
@@ -8,18 +9,22 @@ let upgrade;
 let demon1SpawnTime = 250;
 let demon1MaxSpeed = 1;
 let demonnum = 0;
+let blazeSpawnTime = 250;
+let blazeMaxSpeed = 0.75;
+let blznum = 0;
 let frame = 0;
 let score = 0;
 let gameState = 'title';
 var bg;
 let bl;
 let dm1hp = 5;
+let blzhp = 10000
 function setup() {
   canvas = createCanvas(700, 700);
   canvas.parent('myCanvas');
   player = new Player();
-  t = "Press R to start"
-  bg = loadImage("assets/Background.png")
+  t = "Press R to start";
+  bg = loadImage("assets/Background.png");
   myFont = loadFont("assets/PublicPixel.ttf");
   jpImage = loadImage("assets/pot0.png");
   jp1Image = loadImage("assets/pot1.png");
@@ -29,13 +34,15 @@ function setup() {
   dm1 = loadImage('assets/demon1.png')
   dm2 = loadImage('assets/demon2.png')
   title = loadImage("assets/title.png");
-  title1 = loadImage("assets/title screen wip.png");
+  title1 = loadImage("assets/title2.png");
   lose = loadImage("assets/Lose.png");
   lose1 = loadImage("assets/LoseTomb.png");
   bullet = loadImage("assets/bullet.png");
   peppers0 = loadImage('assets/peppers0.png');
     peppers1 = loadImage('assets/peppers1.png');
       peppers2 = loadImage('assets/peppers2.png');
+  blz1 = loadImage('assets/blaze1.png');
+  blz2 =loadImage('assets/blaze2.png');
 
   jp = createSprite(0, 0 , 20, 20);
   var myAnimation = jp.addAnimation('floating', 'assets/pot3.png', 'assets/pot0.png');
@@ -50,7 +57,9 @@ function setup() {
   var myAnimation = dm1.addAnimation('floating', 'assets/demon1.png', 'assets/demon2.png');
   dm1.addAnimation('moving', 'assets/demon2.png', 'assets/demon1.png');
 
-
+  blz = createSprite (0, 0, 70, 70);
+  var myAnimation = blz.addAnimation('floating', 'assets/blaze1.png', 'assets/blaze2.png');
+  blz.addAnimation('moving', 'assets/blaze2.png', 'assets/blaze1.png');
 
 
   //create some background for visual reference
@@ -94,8 +103,10 @@ function restart() {
   player.update();
   zomb();
   dem1();
+  blaz();
   frame++;
   // add these
+  fill (255, 255, 255);
   textAlign(CENTER);
   textSize(40);
   text(score, width/2, 75);
@@ -203,6 +214,43 @@ push();
 pop();
 }
 
+function blaz(){
+  push();
+    for (let i = blazes.length - 1; i >= 0; i--) {
+      blazes[i].draw();
+      blazes[i].update();
+
+      if (blazes[i].ateYou()) {
+        gameState = 'gameover';
+        blazes.splice(i, 100);
+        break;
+      }
+
+      if (player.hasShot(blazes[i])) {
+        blzhp = blzhp - 1;
+      if (blzhp === 0){
+        score = score + 1000;
+        blznum = blznum - 1;
+        blazes.splice(i, 1);
+        blzhp = 10000;
+      }
+    }
+  }
+
+    if (frame >= blazeSpawnTime && blznum <= 1 && score >= 250) {
+      blazes.push(new Blaze(random(blazeMaxSpeed)));
+      blazeSpawnTime *= 0.99;
+
+      blznum = blznum + 1
+    }
+    if (frameCount % 1000 == 0) {
+      blazeMaxSpeed += 0.01;
+    }
+  pop();
+  }
+
+
+
 function titleScreen() {
   player = new Player();
   zombies = [];
@@ -211,6 +259,9 @@ function titleScreen() {
   demons1 = [];
   demon1SpawnTime = 250;
   demon1MaxSpeed = 1;
+  blazes = [];
+  blazeSpawnTime = 0;
+  blazeMaxSpeed = 0.5;
   score = 0; // don't forget to reset the score :D
     background(title1, 255, 215, 0);
 
