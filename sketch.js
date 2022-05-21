@@ -43,6 +43,8 @@ function setup() {
       peppers2 = loadImage('assets/peppers2.png');
   blz1 = loadImage('assets/blaze1.png');
   blz2 =loadImage('assets/blaze2.png');
+  ene = loadImage('assets/Enemies.png');
+  con = loadImage('assets/Controls.png');
 
   jp = createSprite(0, 0 , 20, 20);
   var myAnimation = jp.addAnimation('floating', 'assets/pot3.png', 'assets/pot0.png');
@@ -81,6 +83,12 @@ function draw() {
     case 'title':
       titleScreen();
       break;
+    case 'controls':
+        control();
+      break;
+    case 'enemies':
+        enemy();
+      break;
     case 'restart':
       restart();
       break;
@@ -92,6 +100,7 @@ function draw() {
 
 
 function restart() {
+  push();
   //player = new Player();
   //zombies = [];
   //zombieSpawnTime = 300;
@@ -110,7 +119,7 @@ function restart() {
   textAlign(CENTER);
   textSize(40);
   text(score, width/2, 75);
-
+pop();
 
 }
 
@@ -274,11 +283,44 @@ textAlign(CENTER);
 textSize(25);
 text('Press "R" To Start Game', width*0.5, height*0.86);
 }
+
+function control(){
+  background(con, 255, 215, 0);
+  stroke(255);
+  fill(255);
+  textSize(75);
+  textAlign(CENTER);
+
+  textSize(25);
+  text('Press "R" To Continue', width*0.5, height*0.86);
+}
+
+function enemy(){
+  background(ene, 255, 215, 0);
+  stroke(255);
+  fill(255);
+  textSize(75);
+  textAlign(CENTER);
+
+  textSize(25);
+  text('Press "R" To Continue', width*0.5, height*0.86);
+}
+
 function keyReleased() {
   if (gameState === 'title') {
     if (key === 'r' || key === 'R' ) {
-      gameState = 'restart';
-
+      gameState = 'controls';
+      upgrade = 0
+    }
+  }
+  if (gameState === 'controls') {
+    if (key === 'r' || key === 'R' ) {
+        gameState = 'enemies';
+    }
+  }
+  if (gameState === 'enemies') {
+    if (key === 'r' || key === 'R' ) {
+        gameState = 'restart';
     }
   }
   if (gameState === 'gameover') {
