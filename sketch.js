@@ -47,7 +47,7 @@ function setup() {
   blz2 =loadImage('assets/blaze2.png');
   enemy = loadImage('assets/Enemies.png');
   control = loadImage('assets/Controls.png');
-
+  object = loadImage('assets/Object.png');
   jp = createSprite(0, 0 , 20, 20);
   var myAnimation = jp.addAnimation('floating', 'assets/pot3.png', 'assets/pot0.png');
   jp.addAnimation('moving', 'assets/pot1.png', 'assets/pot2.png');
@@ -90,6 +90,9 @@ function draw() {
       break;
     case 'enemy':
         enemies();
+      break;
+      case 'object':
+        objective();
       break;
     case 'restart':
       restart();
@@ -287,6 +290,16 @@ function blaz(){
   pop();
   }
 
+function objective() {
+  background(object, 255, 215, 0);
+  stroke(255);
+  fill(255);
+  textSize(75);
+  textAlign(CENTER);
+
+  textSize(25);
+  text('Press "R" To Continue', width*0.5, height*0.86);
+}
 
 
 function titleScreen() {
@@ -363,10 +376,14 @@ function keyReleased() {
 
   else if (gameState === 'enemy') {
     if (key === 'r' || key === 'R' ) {
+        gameState = 'object';
+    }
+  }
+  else if (gameState === 'object') {
+    if (key === 'r' || key === 'R' ) {
         gameState = 'restart';
     }
   }
-
   else if (gameState === 'gameover') {
     if (key === 'r' || key === 'R' ) {
         gameState = 'restart';
