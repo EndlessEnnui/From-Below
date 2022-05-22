@@ -5,13 +5,17 @@
 body {
   font-family: "Press Start 2P", cursive;
   font-size: 15px;
-  background-color: 0;
-  color: white;
+  background-color: #24272e;
+  color: black;
   padding-top: 5rem;
 
 
 }
-
+h1 {
+  font-style: italic;
+  color: red;
+  text-align: center
+}
 canvas {
   display: block;
   margin: auto;
@@ -20,8 +24,48 @@ canvas {
 
 html, body {
   font-family: "Press Start 2P", cursive;
-  font-size: 15px;
-  background-color: 0;
-  color: black;
-  padding-top: 5rem;
+  font-size: 30px;
+  background-color: #24272e.;
+  color: white;
+
 }
+.buttonContainer{
+  position: absolute;
+  text-align: center;
+  /* padding: 0% auto auto 72%; */
+  width: 100%;
+  margin-left: 23.75%;
+}
+
+.buttonContainer2{
+  position: absolute;
+  text-align: center;
+  padding: 0% 22.5%;
+  width: 100%
+  margin: auto;
+}
+
+.buttonContainer3{
+  position: relative;
+  text-align: center;
+  padding-top: 5%;
+  width: 100%
+  margin: auto;
+}
+
+.buttonContainer4{
+  position: relative;
+  text-align: center;
+  padding-top: 5%;
+  width: 100%
+  margin: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.bottomButtons{
+  padding-top: 5%;

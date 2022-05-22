@@ -39,12 +39,12 @@ function setup() {
   lose1 = loadImage("assets/LoseTomb.png");
   bullet = loadImage("assets/bullet.png");
   peppers0 = loadImage('assets/peppers0.png');
-    peppers1 = loadImage('assets/peppers1.png');
-      peppers2 = loadImage('assets/peppers2.png');
+  peppers1 = loadImage('assets/peppers1.png');
+  peppers2 = loadImage('assets/peppers2.png');
   blz1 = loadImage('assets/blaze1.png');
   blz2 =loadImage('assets/blaze2.png');
-  ene = loadImage('assets/Enemies.png');
-  con = loadImage('assets/Controls.png');
+  enemy = loadImage('assets/Enemies.png');
+  control = loadImage('assets/Controls.png');
 
   jp = createSprite(0, 0 , 20, 20);
   var myAnimation = jp.addAnimation('floating', 'assets/pot3.png', 'assets/pot0.png');
@@ -84,10 +84,10 @@ function draw() {
       titleScreen();
       break;
     case 'controls':
-        control();
+        controls();
       break;
-    case 'enemies':
-        enemy();
+    case 'enemy':
+        enemies();
       break;
     case 'restart':
       restart();
@@ -157,6 +157,32 @@ background(lose1, 255, 215, 0);
 
 
 }
+
+function controls() {
+  background(control, 255, 215, 0);
+  stroke(255);
+  fill(255);
+  textSize(75);
+  textAlign(CENTER);
+
+  textSize(25);
+  text('Press "R" To Continue', width*0.5, height*0.86);
+}
+
+function enemies() {
+  background(enemy, 255, 215, 0);
+  stroke(255);
+  fill(255);
+  textSize(75);
+  textAlign(CENTER);
+
+  textSize(25);
+  text('Press "R" To Continue', width*0.5, height*0.86);
+}
+
+
+
+
 function zomb() {
   push();
   for (let i = zombies.length - 1; i >= 0; i--) {
@@ -284,61 +310,57 @@ textSize(25);
 text('Press "R" To Start Game', width*0.5, height*0.86);
 }
 
-function control(){
-  background(con, 255, 215, 0);
-  stroke(255);
-  fill(255);
-  textSize(75);
-  textAlign(CENTER);
 
-  textSize(25);
-  text('Press "R" To Continue', width*0.5, height*0.86);
-}
-
-function enemy(){
-  background(ene, 255, 215, 0);
-  stroke(255);
-  fill(255);
-  textSize(75);
-  textAlign(CENTER);
-
-  textSize(25);
-  text('Press "R" To Continue', width*0.5, height*0.86);
-}
 
 function keyReleased() {
+
   if (gameState === 'title') {
     if (key === 'r' || key === 'R' ) {
       gameState = 'controls';
       upgrade = 0
     }
   }
-  if (gameState === 'controls') {
+
+   else if (gameState === 'controls') {
     if (key === 'r' || key === 'R' ) {
-        gameState = 'enemies';
+        gameState = 'enemy';
+        upgrade = 0
     }
   }
-  if (gameState === 'enemies') {
+
+  else if (gameState === 'enemy') {
     if (key === 'r' || key === 'R' ) {
         gameState = 'restart';
     }
   }
-  if (gameState === 'gameover') {
+
+  else if (gameState === 'gameover') {
     if (key === 'r' || key === 'R' ) {
-        gameState = 'title';
+        gameState = 'restart';
+        player = new Player();
+        zombies = [];
+        zombieSpawnTime = 250;
+        zombieMaxSpeed = 2;
+        demons1 = [];
+        demon1SpawnTime = 250;
+        demon1MaxSpeed = 1;
+        blazes = [];
+        blazeSpawnTime = 0;
+        blazeMaxSpeed = 0.5;
+        score = 0; // don't forget to reset the score :D
     }
   }
 
-   if (score >= 10 && key === 'b' || key ==='B') {
+   if (score >= 10 && key === '1' || key ==='1') {
     upgrade = 1
     score = score - 10
 
     }
-   if (score >=50 && key === 'v' || key ==='V') {
+   if (score >=50 && key === '2' || key ==='2') {
     upgrade = 2
     score = score - 50
     }
-    if (score >= 100 && key === 'c' || key === 'C') {
+    if (score >= 100 && key === '3' || key === '3') {
     upgrade = 3
     score = score - 100
 }
