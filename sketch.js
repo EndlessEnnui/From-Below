@@ -19,11 +19,13 @@ var bg;
 let bl;
 let dm1hp = 5;
 let blzhp = 10000
+var addNew = true;
 function setup() {
   canvas = createCanvas(700, 700);
   canvas.parent('myCanvas');
   player = new Player();
   t = "Press R to start";
+  note = "";
   bg = loadImage("assets/Background.png");
   myFont = loadFont("assets/PublicPixel.ttf");
   jpImage = loadImage("assets/pot0.png");
@@ -113,6 +115,7 @@ function restart() {
   zomb();
   dem1();
   blaz();
+  notif();
   frame++;
   // add these
   fill (255, 255, 255);
@@ -310,6 +313,36 @@ textSize(25);
 text('Press "R" To Start Game', width*0.5, height*0.86);
 }
 
+function notif() {
+  if (score >= 10 && upgrade === 0) {
+    stroke(255);
+    fill(255);
+    textSize(75);
+    textAlign(CENTER);
+    note = "Upgrade to Double Shot!!!";
+    textSize(25);
+    text(note, width*0.5, height*0.86);
+
+   }
+  if (score >=50 && upgrade === 1) {
+    stroke(255);
+    fill(255);
+    textSize(75);
+    textAlign(CENTER);
+    note = "Upgrade to Triple Shot!!!";
+    textSize(25);
+    text(note, width*0.5, height*0.86);
+   }
+   if (score >= 100 && upgrade === 2) {
+     stroke(255);
+     fill(255);
+     textSize(75);
+     textAlign(CENTER);
+    note = "Upgrade to Drag Shot!!!";
+     textSize(25);
+     text(note, width*0.5, height*0.86);
+}
+}
 
 
 function keyReleased() {
@@ -354,14 +387,16 @@ function keyReleased() {
    if (score >= 10 && key === '1' || key ==='1') {
     upgrade = 1
     score = score - 10
-
+    note = "";
     }
    if (score >=50 && key === '2' || key ==='2') {
     upgrade = 2
     score = score - 50
+    note = "";
     }
     if (score >= 100 && key === '3' || key === '3') {
     upgrade = 3
     score = score - 100
+    note = "";
 }
 }
